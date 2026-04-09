@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List | Вход</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <div class="auth-container">
+        <div id="loginForm" class="auth-form active">
+            <h2>Вход в систему</h2>
+            <form id="login">
+                <div class="input-group">
+                    <label for="loginName">Имя пользователя</label>
+                    <input id="loginName" type="text" required>
+                </div>
+                <div class="input-group">
+                    <label for="loginPassword">Пароль</label>
+                    <input type="password" name="" id="loginPassword" required>
+                </div>
+
+                <button id="login" type="submit">Войти</button>
+                <p>Нет аккаунта? <span id="goToRegister" class="goToSpan">Создайте</span></p>
+            </form>
+        </div>
+
+
+        <div id="registerForm" class="auth-form hidden">
+            <h2>Регистрация</h2>
+            <form id="register">
+                <div class="input-group">
+                    <label for="regName">Имя пользователя</label>
+                    <input id="regName" type="text" required>
+                </div>
+                <div class="input-group">
+                    <label for="regPassword">Пароль</label>
+                    <input type="password" name="" id="regPassword" required>
+                </div>
+                <div class="input-group">
+                    <label for="regPasswordRepeat">Подтвердите пароль</label>
+                    <input type="password" name="" id="regPasswordRepeat" required>
+                </div>
+
+                <button id="register" type="submit">Зарегистрироваться</button>
+                <p>Уже есть аккаунт? <span id="goToLogin" class="goToSpan">Войдите</span></p>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/auth.js"></script>
+</body>
+
+</html>

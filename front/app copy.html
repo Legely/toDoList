@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Мои задачи | To-Do List</title>
+    <link rel="stylesheet" href="css/styleApp.css">
+</head>
+
+<body class="app-body">
+    <header class="app-header">
+        <div class="logo">To-Do<span>List</span></div>
+        <div class="user-controls">
+            <span class="user-name">Привет, Дмитрий</span>
+            <button id="logout-btn" class="btn btn-small btn-outline">Выйти</button>
+        </div>
+    </header>
+
+    <main class="board-container">
+        <div class="board-column">
+            <div class="column-header">
+                <h3>К выполнению</h3>
+                <span class="task-count">2</span>
+            </div>
+            <div class="task-list" id="todo-list">
+                <div class="task-card">
+                    <div class="task-header">
+                        <span class="priority badge-high">High</span>
+                        <div class="task-actions">
+                            <button class="icon-btn edit-btn">✎</button>
+                            <button class="icon-btn delete-btn">✖</button>
+                        </div>
+                    </div>
+                    <h4 class="task-title">Настроить Spring Security</h4>
+                    <p class="task-desc">Добавить проверку JWT-токенов для всех эндпоинтов.</p>
+                    <div class="task-footer">
+                        <span class="task-date">12 Апр 2026</span>
+                        <button class="btn btn-small move-btn">В работу ➜</button>
+                    </div>
+                </div>
+
+                <div class="task-card">
+                    <div class="task-header">
+                        <span class="priority badge-med">Med</span>
+                    </div>
+                    <h4 class="task-title">Сверстать app.html</h4>
+                    <p class="task-desc">Сделать Канбан-доску в темных тонах.</p>
+                </div>
+            </div>
+            <button class="add-task-btn" onclick="document.getElementById('task-modal').classList.add('active')">+ Добавить задачу</button>
+        </div>
+
+        <div class="board-column">
+            <div class="column-header">
+                <h3>В процессе</h3>
+                <span class="task-count">1</span>
+            </div>
+            <div class="task-list" id="in-progress-list">
+                <div class="task-card">
+                    <div class="task-header">
+                        <span class="priority badge-low">Low</span>
+                    </div>
+                    <h4 class="task-title">Настроить базу данных</h4>
+                    <p class="task-desc">Поднять PostgreSQL в Docker.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="board-column">
+            <div class="column-header">
+                <h3>Готово</h3>
+                <span class="task-count">0</span>
+            </div>
+            <div class="task-list" id="done-list">
+            </div>
+        </div>
+    </main>
+
+    <div class="modal-overlay" id="task-modal">
+        <div class="modal-content auth-container">
+            <h2>Новая задача</h2>
+            <form id="new-task-form">
+                <div class="input-group">
+                    <label for="task-title">Название</label>
+                    <input type="text" id="task-title" required>
+                </div>
+                <div class="input-group">
+                    <label for="task-desc">Описание</label>
+                    <textarea id="task-desc" rows="3" required></textarea>
+                </div>
+                <div class="input-group">
+                    <label for="task-priority">Приоритет</label>
+                    <select id="task-priority" class="custom-select">
+                        <option value="LOW">Low (Низкий)</option>
+                        <option value="MEDIUM">Medium (Средний)</option>
+                        <option value="HIGH">High (Высокий)</option>
+                    </select>
+                </div>
+                <div class="modal-actions">
+                    <button type="button" class="btn btn-outline" onclick="document.getElementById('task-modal').classList.remove('active')">Отмена</button>
+                    <button type="submit" class="btn">Сохранить</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script src="js/app copy.js"></script>
+</body>
+
+</html>

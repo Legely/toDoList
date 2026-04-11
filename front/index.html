@@ -18,14 +18,14 @@
             <form id="login">
                 <div class="input-group">
                     <label for="loginName">Имя пользователя</label>
-                    <input id="loginName" type="text" required>
+                    <input id="loginName" name="username" type="text" required>
                 </div>
                 <div class="input-group">
                     <label for="loginPassword">Пароль</label>
-                    <input type="password" name="" id="loginPassword" required>
+                    <input type="password" name="password" id="loginPassword" required>
                 </div>
 
-                <button id="login" type="submit">Войти</button>
+                <button id="loginBtn" type="submit">Войти</button>
                 <p>Нет аккаунта? <span id="goToRegister" class="goToSpan">Создайте</span></p>
             </form>
         </div>
@@ -47,7 +47,7 @@
                     <input type="password" name="" id="regPasswordRepeat" required>
                 </div>
 
-                <button id="register" type="submit">Зарегистрироваться</button>
+                <button id="registerBtn" type="submit">Зарегистрироваться</button>
                 <p>Уже есть аккаунт? <span id="goToLogin" class="goToSpan">Войдите</span></p>
             </form>
         </div>

@@ -85,7 +85,7 @@ app.post('/api/register', async(req, res) => {
         if (!username || !password) {
             return res.status(400).json({
                 success: false,
-                message: 'Введите логин и пароль' // Заменил 'error' на 'message' для единообразия на фронтенде
+                message: 'Введите логин и пароль'
             });
         }
 

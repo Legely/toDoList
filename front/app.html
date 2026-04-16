@@ -16,44 +16,119 @@
             <button class="btnLogout" onclick="logout()">Выйти</button>
         </div>
     </header>
+
     <main class="boardContainer">
         <div class="boardColumn">
             <div class="columnHeader">
                 <h3>К ВЫПОЛНЕНИЮ</h3>
-                <span>13</span>
+                <span>2</span>
             </div>
+
             <div class="taskList">
+                <div class="taskCard" onclick="toggleTask(this)">
+                    <div class="taskHeader">
+                        <span class="priority badgeHigh">High</span>
+                    </div>
+                    <h4 class="taskTitle">Настроить Spring Security</h4>
+                    <p class="taskDesc">Добавить проверку JWT-токенов для всех эндпоинтов.</p>
 
+                    <div class="taskFooter">
+                        <span class="taskDate">16 Апр 2026</span>
+                        <div class="taskActions">
+                            <button type="button" class="iconBtn" title="Редактировать">✎</button>
+                            <button type="button" class="iconBtn" title="Удалить">✖</button>
+                            <button type="button" class="btnSmall moveBtn">В работу ➜</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="taskCard" onclick="toggleTask(this)">
+                    <div class="taskHeader">
+                        <span class="priority badgeMed">Med</span>
+                    </div>
+                    <h4 class="taskTitle">Сверстать app.html</h4>
+                    <p class="taskDesc">Сделать Канбан-доску в темных тонах.</p>
+
+                    <div class="taskFooter">
+                        <span class="taskDate">17 Апр 2026</span>
+                        <div class="taskActions">
+                            <button type="button" class="iconBtn">✎</button>
+                            <button type="button" class="iconBtn">✖</button>
+                            <button type="button" class="btnSmall moveBtn">В работу ➜</button>
+                        </div>
+                    </div>
+                </div>
             </div>
 
-            <button class="btnAddTask">Добавить задачу</button>
-
+            <button class="btnAddTask" onclick="openModal()">+ Добавить задачу</button>
         </div>
 
         <div class="boardColumn">
             <div class="columnHeader">
                 <h3>К ВЫПОЛНЕНИЮ СЕГОДНЯ</h3>
-                <span>12</span>
+                <span>0</span>
             </div>
+            <div class="taskList"></div>
         </div>
 
         <div class="boardColumn">
             <div class="columnHeader">
                 <h3>В ПРОЦЕССЕ</h3>
-                <span>2</span>
+                <span>0</span>
             </div>
+            <div class="taskList"></div>
         </div>
 
         <div class="boardColumn">
             <div class="columnHeader">
                 <h3>ГОТОВО</h3>
-                <span>5</span>
+                <span>0</span>
             </div>
+            <div class="taskList"></div>
         </div>
-
-
-
     </main>
+
+    <div class="modalOverlay" id="taskModal">
+        <div class="auth-container modalContent">
+            <h2>Новая задача</h2>
+            <form id="newTaskForm">
+                <div class="input-group">
+                    <label for="taskTitle">Название</label>
+                    <input type="text" id="taskTitle" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="taskDesc">Описание</label>
+                    <textarea id="taskDesc" rows="3" required></textarea>
+                </div>
+
+                <div class="input-group">
+                    <label for="taskPriority">Приоритет</label>
+                    <select id="taskPriority" class="customSelect">
+            <option value="LOW">Low (Низкий)</option>
+            <option value="MEDIUM">Medium (Средний)</option>
+            <option value="HIGH">High (Высокий)</option>
+        </select>
+                </div>
+
+                <div class="input-group">
+                    <label class="checkboxLabel">
+            <input type="checkbox" id="hasDeadline" onchange="toggleDateInput()"> Установить срок выполнения?
+        </label>
+                </div>
+
+                <div class="input-group" id="deadlineGroup" style="display: none;">
+                    <label for="taskDate">Дата дедлайна</label>
+                    <input type="date" id="taskDate">
+                </div>
+
+                <div class="modalActions">
+                    <button type="button" class="btnOutline" onclick="closeModal()">Отмена</button>
+                    <button type="submit">Сохранить</button>
+                </div>
+            </form>
+        </div>
+    </div>
 
     <script src="js/app.js"></script>
 </body>

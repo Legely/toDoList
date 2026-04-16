@@ -238,3 +238,275 @@ header {
     flex-grow: 1;
     overflow-y: auto;
 }
+
+
+/* =========================================
+   ДОПОЛНЕНИЯ ДЛЯ ЗАДАЧ И МОДАЛЬНОГО ОКНА 
+   ========================================= */
+
+
+/* Стилизация скроллбара в колонках */
+
+.taskList::-webkit-scrollbar {
+    width: 6px;
+}
+
+.taskList::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.taskList::-webkit-scrollbar-thumb {
+    background-color: var(--input-border);
+    border-radius: 10px;
+}
+
+
+/* --- КАРТОЧКА ЗАДАЧИ --- */
+
+.taskCard {
+    background-color: var(--input-bg);
+    border-radius: 8px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    overflow: hidden;
+    transition: transform 0.2s;
+    text-align: left;
+}
+
+.taskCard:hover {
+    transform: translateY(-2px);
+}
+
+.taskHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 0.5rem;
+}
+
+.taskTitle {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+    color: var(--text-main);
+}
+
+.taskDesc {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin-top: 0;
+    text-align: left;
+    line-height: 1.4;
+}
+
+
+/* Метки приоритета */
+
+.priority {
+    font-size: 0.7rem;
+    font-weight: bold;
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    text-transform: uppercase;
+    color: white;
+    /* Переопределяем цвет спана */
+}
+
+.priority:hover {
+    text-decoration: none;
+    /* Убираем подчеркивание от глобального span:hover */
+}
+
+.badgeHigh {
+    background-color: #ef4444;
+}
+
+.badgeMed {
+    background-color: #eab308;
+    color: #1c1917;
+}
+
+.badgeLow {
+    background-color: #3b82f6;
+}
+
+
+/* --- СКРЫТЫЙ ПОДВАЛ ЗАДАЧИ (АККОРДЕОН) --- */
+
+.taskFooter {
+    display: none;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1rem;
+    padding-top: 0.8rem;
+    border-top: 1px solid var(--input-border);
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+.taskCard.active .taskFooter {
+    display: flex;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-5px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.taskDate {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+}
+
+.taskActions {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+
+/* --- ПЕРЕОПРЕДЕЛЕНИЕ СТИЛЕЙ КНОПОК --- */
+
+.iconBtn {
+    background: none;
+    width: auto;
+    padding: 0.3rem;
+    color: var(--text-muted);
+    font-size: 1rem;
+    transition: color 0.2s;
+}
+
+.iconBtn:hover {
+    background: none;
+    color: var(--primary-color);
+}
+
+.btnSmall {
+    width: auto;
+    padding: 0.4rem 0.8rem;
+    font-size: 0.8rem;
+}
+
+.btnAddTask {
+    background: none;
+    border: 2px dashed var(--input-border);
+    color: var(--text-muted);
+    padding: 0.8rem;
+    margin-top: 1rem;
+    transition: all 0.2s;
+}
+
+.btnAddTask:hover {
+    background-color: rgba(249, 115, 22, 0.05);
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+}
+
+.btnOutline {
+    background-color: transparent;
+    border: 1px solid var(--primary-color);
+    color: var(--primary-color);
+}
+
+.btnOutline:hover {
+    background-color: rgba(249, 115, 22, 0.1);
+}
+
+
+/* --- МОДАЛЬНОЕ ОКНО --- */
+
+.modalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    z-index: 1000;
+}
+
+.modalOverlay.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+textarea,
+.customSelect {
+    width: 100%;
+    padding: 0.85rem;
+    background-color: var(--input-bg);
+    border: 1px solid var(--input-border);
+    border-radius: 6px;
+    color: var(--text-main);
+    outline: none;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+textarea {
+    resize: vertical;
+}
+
+textarea:focus,
+.customSelect:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.2);
+}
+
+.modalActions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+
+/* Группа для чекбокса */
+
+.checkboxLabel {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    color: var(--text-main);
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+}
+
+
+/* Стилизация самого чекбокса (убираем глобальную ширину 100%) */
+
+.checkboxLabel input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+    accent-color: var(--primary-color);
+    /* Цвет галочки */
+}
+
+
+/* Стилизация иконки календаря для темной темы */
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+    /* Делает иконку белой */
+    cursor: pointer;
+}
+
+
+/* Анимация появления поля даты */
+
+#deadlineGroup {
+    animation: fadeIn 0.3s ease;
+}

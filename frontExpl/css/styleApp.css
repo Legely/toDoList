@@ -1,0 +1,444 @@
+:root {
+    /* Основные цвета фона - глубокие темные */
+    --bg-color: #121212;
+    /* Почти черный для основного фона */
+    --form-bg: #1e1e1e;
+    /* Темно-серый для карточки формы (чуть светлее) */
+    /* Акцентный цвет - Оранжевый */
+    --primary-color: #f97316;
+    /* Яркий, насыщенный оранжевый */
+    --primary-hover: #ea580c;
+    /* Оранжевый потемнее для наведения */
+    /* Цвета текста и элементов форм */
+    --text-main: #e5e7eb;
+    /* Светло-серый (почти белый) для основного текста */
+    --text-muted: #a1a1aa;
+    /* Более темный серый для подписей (labels) */
+    --input-bg: #27272a;
+    /* Фон внутри полей ввода */
+    --input-border: #3f3f46;
+    /* Граница полей ввода */
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: var(--bg-color);
+    width: 100%;
+    height: 100vh;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+form {
+    text-align: left;
+}
+
+h2 {
+    margin-bottom: 1.5rem;
+    color: var(--primary-color);
+}
+
+.input-group {
+    margin-bottom: 1.2rem;
+}
+
+.input-group label {
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+}
+
+.input-group input {
+    background-color: var(--input-bg);
+    border: 1px solid var(--input-border);
+    width: 100%;
+    padding: 0.85rem;
+    font-size: 1rem;
+    border-radius: 6px;
+    color: var(--text-main);
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.input-group input:focus {
+    border-color: var(--primary-color);
+    /* Легкое оранжевое свечение */
+    box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.2);
+}
+
+span {
+    color: var(--primary-color);
+    font-weight: bold;
+}
+
+span:hover {
+    color: var(--primary-hover);
+    text-decoration: underline;
+}
+
+button {
+    background-color: var(--primary-color);
+    width: 100%;
+    color: var(--text-main);
+    border-radius: 6px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    padding: 0.85rem;
+}
+
+button:hover {
+    background-color: var(--primary-hover);
+}
+
+p {
+    text-align: center;
+    margin-top: 1.5rem;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+}
+
+.auth-container {
+    background-color: var(--form-bg);
+    padding: 2.5rem;
+    border-radius: 12px;
+    /* Тень делаем темнее и мягче для темной темы */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    width: 100%;
+    max-width: 400px;
+    border: 2px solid var(--primary-color);
+}
+
+
+/* Активация */
+
+.auth-form {
+    display: none;
+}
+
+.auth-form.active {
+    display: block;
+}
+
+
+/* --- Стили для главной страницы приложения (app.html) --- */
+
+
+/* Меняем выравнивание для app.html, чтобы не центрировалось по вертикали */
+
+.app-body {
+    display: block;
+    height: 100vh;
+    overflow: hidden;
+    /* Запрещаем прокрутку всей страницы, скроллиться будут только колонки */
+}
+
+
+/* Шапка приложения */
+
+.app-header {
+    background-color: var(--form-bg);
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid var(--input-bg);
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--text-main);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.logo span {
+    color: var(--primary-color);
+}
+
+.user-controls {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+
+/* Контейнер для доски */
+
+.board-container {
+    display: flex;
+    gap: 1.5rem;
+    padding: 2rem;
+    height: calc(100vh - 70px);
+    /* Высота экрана минус шапка */
+    overflow-x: auto;
+    /* Горизонтальный скролл, если колонок будет много */
+}
+
+
+/* Колонка (To Do, In Progress, Done) */
+
+.board-column {
+    background-color: var(--form-bg);
+    border-radius: 10px;
+    width: 350px;
+    min-width: 320px;
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+}
+
+.column-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--primary-color);
+}
+
+.column-header h3 {
+    color: var(--text-main);
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    margin: 0;
+}
+
+.task-count {
+    background-color: var(--input-bg);
+    color: var(--text-muted);
+    padding: 0.2rem 0.6rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+
+/* Список карточек */
+
+.task-list {
+    flex-grow: 1;
+    overflow-y: auto;
+    /* Вертикальный скролл внутри колонки */
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding-right: 5px;
+}
+
+
+/* Стилизация скроллбара под темную тему */
+
+.task-list::-webkit-scrollbar {
+    width: 6px;
+}
+
+.task-list::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.task-list::-webkit-scrollbar-thumb {
+    background-color: var(--input-border);
+    border-radius: 10px;
+}
+
+
+/* Карточка задачи */
+
+.task-card {
+    background-color: var(--input-bg);
+    border-radius: 8px;
+    padding: 1rem;
+    border-left: 4px solid var(--primary-color);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s;
+}
+
+.task-card:hover {
+    transform: translateY(-2px);
+}
+
+.task-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 0.5rem;
+}
+
+
+/* Метки приоритета */
+
+.priority {
+    font-size: 0.7rem;
+    font-weight: bold;
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    text-transform: uppercase;
+}
+
+.badge-high {
+    background-color: #ef4444;
+    color: white;
+}
+
+.badge-med {
+    background-color: #eab308;
+    color: #1c1917;
+}
+
+.badge-low {
+    background-color: #3b82f6;
+    color: white;
+}
+
+.task-title {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+    color: var(--text-main);
+}
+
+.task-desc {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin-bottom: 1rem;
+    text-align: left;
+    line-height: 1.4;
+}
+
+.task-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1rem;
+    padding-top: 0.5rem;
+    border-top: 1px solid var(--input-border);
+}
+
+.task-date {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+}
+
+
+/* Модификации кнопок */
+
+.btn-small {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.8rem;
+    margin-top: 0;
+}
+
+.btn-outline {
+    background-color: transparent;
+    border: 1px solid var(--primary-color);
+    color: var(--primary-color);
+}
+
+.btn-outline:hover {
+    background-color: rgba(249, 115, 22, 0.1);
+}
+
+.icon-btn {
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    cursor: pointer;
+    font-size: 1rem;
+    transition: color 0.2s;
+}
+
+.icon-btn:hover {
+    color: var(--primary-color);
+}
+
+.add-task-btn {
+    background: none;
+    border: 2px dashed var(--input-border);
+    color: var(--text-muted);
+    padding: 0.8rem;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 1rem;
+    font-weight: bold;
+    transition: all 0.2s;
+}
+
+.add-task-btn:hover {
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+    background-color: rgba(249, 115, 22, 0.05);
+}
+
+
+/* --- Стили для модального окна --- */
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    z-index: 1000;
+}
+
+.modal-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.modal-content {
+    /* Наследует стили от .auth-container */
+    border-top: none;
+    border-left: 4px solid var(--primary-color);
+}
+
+textarea {
+    width: 100%;
+    padding: 0.85rem;
+    background-color: var(--input-bg);
+    border: 1px solid var(--input-border);
+    border-radius: 6px;
+    color: var(--text-main);
+    resize: vertical;
+    outline: none;
+}
+
+textarea:focus {
+    border-color: var(--primary-color);
+}
+
+.custom-select {
+    width: 100%;
+    padding: 0.85rem;
+    background-color: var(--input-bg);
+    border: 1px solid var(--input-border);
+    border-radius: 6px;
+    color: var(--text-main);
+    outline: none;
+}
+
+.modal-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.modal-actions .btn {
+    margin-top: 0;
+}

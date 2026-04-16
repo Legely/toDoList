@@ -16,6 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // отправляем его обратно на страницу входа/регистрации
         window.location.href = 'index.html';
     }
+
 });
 
 function logout() {

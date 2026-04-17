@@ -510,3 +510,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 #deadlineGroup {
     animation: fadeIn 0.3s ease;
 }
+
+.hidden {
+    display: none;
+}

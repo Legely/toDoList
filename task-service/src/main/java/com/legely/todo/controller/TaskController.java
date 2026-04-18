@@ -14,8 +14,7 @@ public class TaskController {
     private TaskRepository taskRepository;
 
     @PostMapping
-    public Task createTask(@RequestBody Task task) {
-        // Если статус вдруг не пришел, ставим TODO жестко
+    public Task createTask(@RequestBody Task task) {  
         if (task.getStatus() == null) {
             task.setStatus("TODO");
         }

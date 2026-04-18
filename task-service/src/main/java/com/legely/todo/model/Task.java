@@ -15,6 +15,7 @@ public class Task {
     private String priority;
     private LocalDate deadline;
     private String status = "TODO";
+    private String username; // <--- НОВОЕ ПОЛЕ
 
     // --- Ручные Геттеры и Сеттеры (чтобы JSON собирался без ошибок) ---
 
@@ -35,4 +36,7 @@ public class Task {
 
     public String getStatus() { return status; }
     public void setStatus(String status) { this.status = status; }
+
+    public String getUsername() { return username; }
+    public void setUsername(String username) { this.username = username; }
 }

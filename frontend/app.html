@@ -76,7 +76,7 @@
                 <h3>В ПРОЦЕССЕ</h3>
                 <span>0</span>
             </div>
-            <div class="taskList"></div>
+            <div class="taskList" id="taskListInProgress"></div>
         </div>
 
         <div class="boardColumn">
@@ -84,7 +84,7 @@
                 <h3>ГОТОВО</h3>
                 <span>0</span>
             </div>
-            <div class="taskList"></div>
+            <div class="taskList" id="taskListDone"></div>
         </div>
     </main>
 
@@ -96,7 +96,7 @@
                     <label for="taskTitle">Название</label>
                     <input type="text" id="taskTitle" required>
                 </div>
-
+                <input type="hidden" id="editTaskId" value="">
                 <div class="input-group">
                     <label for="taskDesc">Описание</label>
                     <textarea id="taskDesc" rows="3" required></textarea>

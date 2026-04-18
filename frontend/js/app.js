@@ -108,7 +108,7 @@ document.getElementById('newTaskForm').addEventListener('submit', async function
 
             // Создаем карточку и добавляем в колонку
             const taskCard = createTaskElement(savedTask);
-            document.getElementById('todo-list').appendChild(taskCard);
+            document.getElementById('taskListToDo').appendChild(taskCard);
 
             closeModal();
         } else {
@@ -129,7 +129,7 @@ async function fetchTasks() {
             const tasks = await response.json();
 
             // Очищаем колонки перед отрисовкой
-            document.getElementById('todo-list').innerHTML = '';
+            document.getElementById('taskListToDo').innerHTML = '';
             // document.getElementById('in-progress-list').innerHTML = '';
             // document.getElementById('done-list').innerHTML = '';
 
@@ -138,7 +138,7 @@ async function fetchTasks() {
                 const taskCard = createTaskElement(task);
 
                 if (task.status === 'TODO') {
-                    document.getElementById('todo-list').appendChild(taskCard);
+                    document.getElementById('taskListToDo').appendChild(taskCard);
                 }
                 // Добавь проверки для IN_PROGRESS и DONE, если у тебя есть эти колонки
             });
@@ -149,36 +149,53 @@ async function fetchTasks() {
 }
 
 // Функция генерации HTML-карточки
+
 function createTaskElement(task) {
     const div = document.createElement('div');
-    div.className = 'task-card';
+    // Используем твой класс
+    div.className = 'taskCard';
     div.dataset.id = task.id; // Прячем ID для будущего удаления/обновления
 
     // Добавляем функцию сворачивания по клику на саму карточку
     div.onclick = function() { toggleTask(this); };
 
-    // Настраиваем цвета в зависимости от приоритета
+    // Настраиваем цвета и текст бейджа в зависимости от приоритета
     let badgeClass = '';
-    if (task.priority === 'HIGH') badgeClass = 'badge-high';
-    else if (task.priority === 'MEDIUM') badgeClass = 'badge-med';
-    else badgeClass = 'badge-low';
-
-    // Формируем блок с дедлайном, если он есть
-    let deadlineHtml = '';
-    if (task.deadline) {
-        deadlineHtml = `<span class="task-date" style="color: var(--primary-color); font-weight: bold;">До: ${task.deadline}</span>`;
+    let priorityText = '';
+    if (task.priority === 'HIGH') {
+        badgeClass = 'badgeHigh';
+        priorityText = 'High';
+    } else if (task.priority === 'MEDIUM') {
+        badgeClass = 'badgeMed';
+        priorityText = 'Med';
+    } else {
+        badgeClass = 'badgeLow'; // Предполагаем, что для LOW есть класс badgeLow
+        priorityText = 'Low';
     }
 
+    // Формируем блок с дедлайном. Если даты нет, оставляем пустой span, чтобы верстка не ехала
+    let deadlineHtml = '';
+    if (task.deadline) {
+        deadlineHtml = `<span class="taskDate">${task.deadline}</span>`;
+    } else {
+        deadlineHtml = `<span class="taskDate">Без срока</span>`;
+    }
+
+    // Собираем внутренний HTML строго по твоему шаблону
     div.innerHTML = `
-        <div class="task-header">
-            <span class="priority ${badgeClass}">${task.priority}</span>
-            <div class="taskActions"> <button class="icon-btn delete-btn" onclick="deleteTask(${task.id})">✖</button>
-            </div>
+        <div class="taskHeader">
+            <span class="priority ${badgeClass}">${priorityText}</span>
         </div>
-        <h4 class="task-title">${task.title}</h4>
-        <p class="task-desc">${task.description}</p>
-        <div class="task-footer">
+        <h4 class="taskTitle">${task.title}</h4>
+        <p class="taskDesc">${task.description}</p>
+
+        <div class="taskFooter">
             ${deadlineHtml}
+            <div class="taskActions">
+                <button type="button" class="iconBtn" title="Редактировать">✎</button>
+                <button type="button" class="iconBtn" title="Удалить" onclick="deleteTask(${task.id})">✖</button>
+                <button type="button" class="btnSmall moveBtn">В работу ➜</button>
+            </div>
         </div>
     `;
 
